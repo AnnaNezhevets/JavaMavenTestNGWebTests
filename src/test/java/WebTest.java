@@ -4,7 +4,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.Assertion;
 
 public class WebTest {
 
@@ -60,4 +59,115 @@ public class WebTest {
         driver.quit();
     }
 
-}
+    @Test
+    public void testIsThereSubmitNewLanguageOnlastLink(){
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:/Users/Пользователь/Downloads/chromedriver_win32/chromedriver.exe";
+        String url = "https://www.99-bottles-of-beer.net/";
+        String expectedResult = "Submit new Language";
+
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+
+        WebElement submitNewLanguage = driver.findElement(
+           By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='menu']/li/a[@href='/submitnewlanguage.html']")
+        );
+        String actualResult = submitNewLanguage.getText();
+
+      Assert.assertEquals(actualResult, expectedResult.toUpperCase());
+
+        driver.quit();
+    }
+
+    @Test
+    public void testIsThereSubmitNewLanguageName() {
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:/Users/Пользователь/Downloads/chromedriver_win32/chromedriver.exe";
+        String url = "https://www.99-bottles-of-beer.net/";
+        String expectedResult = "Submit New Language";
+
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+
+        WebElement submitNewLanguage = driver.findElement(
+                By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='menu']/li/a[@href='/submitnewlanguage.html']")
+        );
+
+        submitNewLanguage.click();
+
+        WebElement subMenuSubmitNewLanguage = driver.findElement(
+                By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='submenu']/li/a[@href='./submitnewlanguage.html']")
+        );
+
+        String actualResult = subMenuSubmitNewLanguage.getText();
+
+        Assert.assertEquals(actualResult, expectedResult);
+
+        driver.quit();
+    }
+
+    @Test
+    public void testFirstPointOfMenu0_9() {
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:/Users/Пользователь/Downloads/chromedriver_win32/chromedriver.exe";
+        String url = "http://www.99-bottles-of-beer.net/abc.html";
+        String expectedResult = "0-9";
+
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+
+        WebElement subMenuFirstSymbol = driver.findElement(
+                By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='submenu']/li/a[@href='0.html']"));
+        String actualResult = subMenuFirstSymbol.getText();
+
+        Assert.assertEquals(actualResult, expectedResult);
+
+        driver.quit();
+
+    }
+
+    @Test
+    public void testTeamOfWebsite90(){
+        String chromeDriver = "webdriver.chrome.driver";
+        String driverPath = "C:/Users/Пользователь/Downloads/chromedriver_win32/chromedriver.exe";
+        String url = "https://www.99-bottles-of-beer.net/";
+        String[] expectedResultAuthors = {"Oliver Schade", "Gregor Scheithauer", "Stefan Scheler"};
+
+        System.setProperty(chromeDriver, driverPath);
+        WebDriver driver = new ChromeDriver();
+
+        driver.get(url);
+
+        WebElement submenuTeam = driver.findElement(
+                By.xpath("//body/div[@id='wrap']/div[@id='navigation']/ul[@id='submenu']/li/a[@href='team.html']"));
+
+        submenuTeam.click();
+
+        WebElement h3OliverSchade = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']/h3"));
+        h3OliverSchade.getText();
+
+        WebElement h3GregorScheithauer = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']/h3[2]"));
+        h3GregorScheithauer.getText();
+
+        WebElement h3StefanScheler = driver.findElement(By.xpath("//body/div[@id='wrap']/div[@id='main']/h3[3]"));
+        h3StefanScheler.getText();
+
+        String[] actualResult = new String[]
+                {h3OliverSchade.getText(), h3GregorScheithauer.getText(), h3StefanScheler.getText()};
+
+        Assert.assertEquals(actualResult, expectedResultAuthors);
+
+        driver.quit();
+       }
+    }
+
+
+
+
+
