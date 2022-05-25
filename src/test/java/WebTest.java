@@ -4,9 +4,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.Assertion;
-
-import java.nio.charset.StandardCharsets;
 
 public class WebTest {
 
@@ -79,7 +76,7 @@ public class WebTest {
         );
         String actualResult = submitNewLanguage.getText();
 
-      Assert.assertEquals(actualResult, expectedResult);
+      Assert.assertEquals(actualResult, expectedResult.toUpperCase());
 
         driver.quit();
     }
@@ -168,11 +165,6 @@ public class WebTest {
 
         driver.quit();
        }
-
-
-
-
-
     }
 
 
